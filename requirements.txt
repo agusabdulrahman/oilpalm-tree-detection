@@ -1,0 +1,12 @@
+Pillow==11.1.0
+opencv-python
+geopandas
+matplotlib
+patchify
+rasterio==1.4.3
+roboflow==1.2.11
+shapely==2.1.2
+scikit-learn==1.5.2
+tifffile==2025.10.4
+torch==2.5.1
+ultralytics==8.3.206
