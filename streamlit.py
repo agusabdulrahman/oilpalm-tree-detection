@@ -38,7 +38,7 @@ with st.sidebar:
 
     model_path = st.text_input(
         "Path Model YOLO",
-        value=r"Model\oilpalm_detection_model_yolov26n.pt",
+        value="Model/oilpalm_detection_model_yolov26n.pt",
     )
     confidence_thresh = st.slider("Confidence Threshold", 0.1, 1.0, 0.45, 0.05)
 
