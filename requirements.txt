@@ -29,7 +29,7 @@ narwhals==2.28.0
 networkx==3.7
 numpy==2.5.4
 nvidia-ml-py==13.615.71
-opencv-python==5.0.0.93
+opencv-python-headless==5.0.0.93
 packaging==26.3
 pandas==3.1.0
 pillow==13.0.0
