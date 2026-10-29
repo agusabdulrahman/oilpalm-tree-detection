@@ -196,6 +196,16 @@ with st.sidebar:
         ),
     )
 
+    uploaded_model = st.file_uploader(
+        "Upload Model YOLO (.pt) opsional",
+        type=["pt"],
+        help="Gunakan jika model tidak tersedia di deployment.",
+    )
+
+    if uploaded_model is not None:
+        model_upload_path = TEMP_DIR / uploaded_model.name
+        model_upload_path.write_bytes(uploaded_model.getvalue())
+        model_path_text = str(model_upload_path)
     confidence_thresh = st.slider("Confidence Threshold", 0.1, 1.0, 0.45, 0.05)
     tile_size = st.select_slider(
         "Tile Size",
@@ -406,11 +416,11 @@ if "gdf_filtered" in st.session_state:
     img_col1, img_col2 = st.columns(2)
     with img_col1:
         st.subheader("🖼️ Citra Input")
-        st.image(st.session_state["original_image"], use_container_width=True)
+        st.image(st.session_state["original_image"], width='stretch')
 
     with img_col2:
         st.subheader("🎯 Hasil Prediksi")
-        st.image(st.session_state["annotated_image"], use_container_width=True)
+        st.image(st.session_state["annotated_image"], width='stretch')
 
     st.divider()
 
@@ -474,7 +484,7 @@ if "gdf_filtered" in st.session_state:
             data=gdf_filtered.to_json(),
             file_name="oilpalm_filtered_results.geojson",
             mime="application/geo+json",
-            use_container_width=True,
+            width='stretch',
         )
 
         st.download_button(
@@ -482,13 +492,13 @@ if "gdf_filtered" in st.session_state:
             data=gdf.to_json(),
             file_name="oilpalm_raw_results.geojson",
             mime="application/geo+json",
-            use_container_width=True,
+            width='stretch',
         )
 
         st.markdown("### 🔍 Sample Validation Window")
         st.write("Preview potongan area raster di sekitar deteksi acak.")
 
-        if st.button("Tampilkan Random Sample Plot", use_container_width=True):
+        if st.button("Tampilkan Random Sample Plot", width='stretch'):
             sample_gdf = gdf_filtered
             input_path = st.session_state["input_raster_path"]
 
